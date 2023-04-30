@@ -15,7 +15,7 @@ import (
 
 var (
 	// Telegram token
-	Token = os.Getenv("TELEGRAM_TOKEN")
+	Token = os.Getenv("TELE_TOKEN")
 )
 
 // kbotCmd represents the kbot command
