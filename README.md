@@ -14,7 +14,7 @@
 5. generate telebot.go \
 <code>cobra-cli add telebot</code>
 6. set version \
-<code>go build -ldflags "-X="github.com/nataliia-v/telebot/cmd.appVersion=v1.0.0</code>
+<code>go build -ldflags "-X="github.com/xminyax/kbot/cmd.appVersion=v1.0.0</code>
 
 **Kbot integration**
 
@@ -28,7 +28,7 @@ Check token: \
 4. Download and install dependencies. \
 <code>go get</code>
 5. Build and update version to v1.0.1 \
-<code>go build -ldflags "-X="github.com/xminyax/telebot/cmd.appVersion=v1.0.1</code>
+<code>go build -ldflags "-X="github.com/xminyax/kbot/cmd.appVersion=v1.0.1</code>
 6. Run app. \
 <code>./kbot start</code>
 
