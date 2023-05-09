@@ -27,7 +27,7 @@ Check token: \
 <code>export TELE_TOKEN</code>
 4. Download and install dependencies. \
 <code>go get</code>
-5. Build and update version to v1.0.1 \
+5. Build and update version to v1.0.0 \
 <code>go build -ldflags "-X="github.com/xminyax/kbot/cmd.appVersion=v1.0.0</code>
 6. Run app. \
 <code>./kbot start</code>
