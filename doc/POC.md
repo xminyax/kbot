@@ -11,18 +11,18 @@
 
 `k3d cluster create my-cluster`
 
-1. Install the ArgoCD:
+2. Install the ArgoCD:
 
 `kubectl create namespace argocd`
 `kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml`
 
-1. Wait for the ArgoCD deployment to complete.
+3. Wait for the ArgoCD deployment to complete.
 
-1. To access the ArgoCD web interface, run the following command to expose the service:
+4. To access the ArgoCD web interface, run the following command to expose the service:
 
 `kubectl port-forward svc/my-argocd-server -n argocd 8080:443`
 
-1. Open a web browser and navigate to https://localhost:8080. You should now be able to access the ArgoCD graphical interface.
+5. Open a web browser and navigate to https://localhost:8080. You should now be able to access the ArgoCD graphical interface.
 
 ## Demo run AgroCD
 
@@ -30,9 +30,9 @@
 
 ## Accessing the ArgoCD Interface
 
-kbot/doc/argoCD-demo01.png
+![image info](argoCD-demo01.png)
 
-kbot/doc/argoCD-demo02.png
+![image info](argoCD-demo02.png)
 
 1. Open a web browser and navigate to the ArgoCD URL.
 
