@@ -4,15 +4,20 @@ Argo CD automates the deployment of the desired application states in the specif
 
 ## Install and Setup ArgoCD
 
-1. Install the ArgoCD operator by running the following command:  
-`kubectl create namespace argocd` 
-`kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml`
+1. Install the ArgoCD operator by running the following command:
 
-2. Expose the ArgoCD server by running the following command: 
-`kubectl port-forward svc/argocd-server -n argocd 8080:443`
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+2. Expose the ArgoCD server by running the following command:
+
+```kubectl port-forward svc/argocd-server -n argocd 8080:443```
 
 3. Getting password for user "admin": 
-`kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo`
+
+```kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo```
 
 5. Log in to the ArgoCD web interface using the default username.
 
@@ -21,10 +26,12 @@ Argo CD automates the deployment of the desired application states in the specif
 Once ArgoCD is set up, you can dumb down to deploy the application. The following steps allow you to automate the deployment.
 
 1. The repository on GitHub will be used for the demonstration: 
-`https://github.com/den-vasyliev/go-demo-app`
+
+```https://github.com/den-vasyliev/go-demo-app```
 
 2. We will create a manifest in YAML format, the file describes the different parameters for deploying the application: 
 
+```
     ---
     apiVersion: argoproj.io/v1alpha1
     kind: Application
@@ -47,10 +54,11 @@ Once ArgoCD is set up, you can dumb down to deploy the application. The followin
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
+```
 
 3. Apply the created manifest file:
 
-    `kubectl apply -n argocd -f application.yaml`
+    ```kubectl apply -n argocd -f application.yaml```
 
 5. Subsequent updates of the repository will lead to an automatic update of the application
 
