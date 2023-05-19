@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Check the number of command-line arguments
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <resource_type> <namespace>"
+    exit 1
+fi
+
+# Assign command-line arguments to variables
+RESOURCE_TYPE="$1"
+NAMESPACE="$2"
+
+# Retrieve resource usage statistics and remove header
+usage_output=$(kubectl top $RESOURCE_TYPE -n $NAMESPACE | tail -n +2)
+
+# Process each line of the output
+while IFS= read -r line; do
+    # Extract resource name, CPU usage, and memory usage using awk
+    resource_name=$(echo "$line" | awk '{print $1}')
+    cpu_usage=$(echo "$line" | awk '{print $2}')
+    memory_usage=$(echo "$line" | awk '{print $3}')
+
+    # Output the resource information
+    echo "Resource Type: $RESOURCE_TYPE"
+    echo "Namespace: $NAMESPACE"
+    echo "Resource Name: $resource_name"
+    echo "CPU Usage: $cpu_usage"
+    echo "Memory Usage: $memory_usage"
+    echo
+done <<< "$usage_output"
