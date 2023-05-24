@@ -1,0 +1,30 @@
+# make app-livenessProbe max 5 errors and readinessProbe max 5 errors from gcr.io/tidy-shard-382112/kbot port 8080 and add a resource limit
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-livenessProbe
+spec:
+  containers:
+    - name: app-livenessProbe
+      image: gcr.io/tidy-shard-382112/kbot
+      ports:
+        - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        failureThreshold: 5
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        failureThreshold: 5
+      resources:
+        limits:
+          cpu: 500m
+          memory: 512Mi

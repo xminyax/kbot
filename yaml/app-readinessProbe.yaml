@@ -1,0 +1,18 @@
+# make the kbot-readinessProbe from gcr.io/tidy-shard-382112/kbot work on port 8080 with a maximum of 5 errors
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kbot-readinessProbe
+spec:
+  containers:
+  - name: kbot
+    image: gcr.io/tidy-shard-382112/kbot
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 8080
+      failureThreshold: 5
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1

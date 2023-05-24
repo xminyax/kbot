@@ -1,0 +1,17 @@
+#  make an app-cronjob that will run the Hi k8s command every 10 minutes
+
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hi-k8s-cronjob
+spec:
+  schedule: "*/10 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hi-k8s
+            image: busybox
+            command: ["echo", "Hi k8s"]
+          restartPolicy: OnFailure

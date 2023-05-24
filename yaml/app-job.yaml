@@ -1,0 +1,17 @@
+# make an app-job of synchorning data from Google Cloud Storage (GCS) to local disk storage
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gcs-sync-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: gcs-sync
+        image: gcr.io/google-containers/gcs-sync
+        args:
+        - --source=gs://my-bucket
+        - --destination=/data
+      restartPolicy: Never
+  backoffLimit: 4

@@ -1,0 +1,49 @@
+# make kbot-livenessProbe and readinessProbe from gcr.io/tidy-shard-382112/kbot the application works on port 8080 with a maximum of 5 errors and add resource allocations and mount the data disk
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kbot
+  template:
+    metadata:
+      labels:
+        app: kbot
+    spec:
+      containers:
+        - name: kbot
+          image: gcr.io/tidy-shard-382112/kbot
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: data-disk
+              mountPath: /data
+      volumes:
+        - name: data-disk
+          persistentVolumeClaim:
+            claimName: data-disk
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        failureThreshold: 5
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        failureThreshold: 5
