@@ -2,6 +2,7 @@ pipeline {
     agent any
     parameters {
         choice(name: 'OS', choices: ['linux', 'darwin', 'windows', 'all'], description: 'Pick OS')
+        choice(name: 'ARCH', choices: ['amd64', 'aarm'], description: 'Pick ARCH')
     }
     environment {
         REPO = "https://github.com/minyax/kbot"
