@@ -39,8 +39,8 @@ jobs:
       - name: Build & Push Docker
         env:
           APP: "kbot"
-          REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
-        run: make imagedoc pushdoc clean ARCH=$ARCH REGISTRY=$REGISTRY
+          REGISTRYDOC: ${{ secrets.DOCKERHUB_USERNAME }}
+        run: make imagedoc pushdoc clean ARCH=$ARCH REGISTRYDOC=$REGISTRYDOC
 
 #      - name: Clean
 #        run: make clean ARCH=$ARCH REGISTRY=$REGISTRY

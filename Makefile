@@ -1,5 +1,5 @@
 APP := $(shell basename $(shell git remote get-url origin))
-REGISTRY := minyax
+REGISTRYDOC := minyax
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
 OS=linux
 #linux darwin windows
@@ -39,10 +39,10 @@ push:
 	docker push ${REGISTRY}:${VERSION}-${OS}-${ARCH}
 
 pushdoc:
-	docker push ${REGISTRY}/${APP}:${VERSION}-${OS}-${ARCH}
+	docker push ${REGISTRYDOC}/${APP}:${VERSION}-${OS}-${ARCH}
 
 imagedoc:
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${OS}-${ARCH} --build-arg CGO_ENABLED=${CGO_ENABLED} --build-arg TARGETARCH=${ARCH} --build-arg TARGETOS=${TOS}
+	docker build . -t ${REGISTRYDOC}/${APP}:${VERSION}-${OS}-${ARCH} --build-arg CGO_ENABLED=${CGO_ENABLED} --build-arg TARGETARCH=${ARCH} --build-arg TARGETOS=${TOS}
 
 clean:
 	rm -rf kbot
