@@ -4,6 +4,7 @@ on: push
 
 env:
   ARCH: amd64
+  REGISTRY: ghcr.io/${{ github.repository }}
   
 jobs:
   ci:
