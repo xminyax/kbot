@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   repository: minyax
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.1-dedc9c2"
+  tag: "v1.0.1-2a39b2c"
   arch: amd64
 secret:
   name: "kbot"
