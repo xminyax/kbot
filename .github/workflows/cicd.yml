@@ -36,11 +36,11 @@ jobs:
       - name: Build & Push
         run: make image push clean ARCH=$ARCH REGISTRY=$REGISTRY
         
-      - name: Build & Push DOcker
+      - name: Build & Push Docker
         env:
           APP: "kbot"
           REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
-        run: make image push clean ARCH=$ARCH
+        run: make image push clean ARCH=$ARCH REGISTRY=$REGISTRY
 
 #      - name: Clean
 #        run: make clean ARCH=$ARCH REGISTRY=$REGISTRY
