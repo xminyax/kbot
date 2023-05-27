@@ -28,9 +28,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build&Push
-        run: make image push ARCH=$ARCH REGISTRY=$REGISTRY
-      - name: Clean
-        run: make clean ARCH=$ARCH
+        run: make image push clean ARCH=$ARCH REGISTRY=$REGISTRY
       
   cd:
     name: CD
