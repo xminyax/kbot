@@ -3,7 +3,7 @@ name: KBOT-CICD
 on: push
 
 env:
-  TARGETARCH: amd64
+  ARCH: amd64
   
 jobs:
   ci:
@@ -27,9 +27,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build&Push
-        run: make image push clean TARGETARCH=$TARGETARCH REGISTRY=$REGISTR
+        run: make image push clean ARCH=$ARCH REGISTRY=$REGISTR
       - name: Clean
-        run: make clean TARGETARCH=$TARGETARCH
+        run: make clean ARCH=$ARCH
       
   cd:
     name: CD
@@ -44,7 +44,7 @@ jobs:
 
     - uses: mikefarah/yq@master
       with:
-        cmd: yq -i '.image.tag=strenv(VERSION) | .image.arch=strenv(TARGETARCH)' helm/values.yaml
+        cmd: yq -i '.image.tag=strenv(VERSION) | .image.arch=strenv(ARCH)' helm/values.yaml
     - run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
