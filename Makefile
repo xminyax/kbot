@@ -31,11 +31,11 @@ build: format get
 	CGO_ENABLED=${CGO_ENABLED} GOOS=${OS} GOARCH=${ARCH} go build -v -o kbot -ldflags "-X="github.com/xminyax/kbot/cmd.appVersion=${VERSION}
 
 image:
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${ARCH} --build-arg CGO_ENABLED=${CGO_ENABLED} --build-arg ARCH=${ARCH} --build-arg OS=${OS}
+	docker build . -t ${REGISTRY}:${VERSION}:${OS}-${ARCH} --build-arg CGO_ENABLED=${CGO_ENABLED} --build-arg ARCH=${ARCH} --build-arg OS=${OS}
 
 push:
-	docker push ${REGISTRY}/${APP}:${VERSION}-${ARCH}
+	docker push ${REGISTRY}:${VERSION}-${OS}-${ARCH}
 
 clean:
 	rm -rf kbot
-	docker rmi ${REGISTRY}/${APP}:${VERSION}-${ARCH}
+	docker rmi ${REGISTRY}:${VERSION}-${OS}-${ARCH}
