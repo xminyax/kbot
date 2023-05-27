@@ -34,13 +34,13 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build & Push
-        run: make image push ARCH=$ARCH REGISTRY=$REGISTRY
+        run: make image push clean ARCH=$ARCH REGISTRY=$REGISTRY
         
       - name: Build & Push DOcker
         env:
           APP: "kbot"
           REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
-        run: make image clean clean push ARCH=$ARCH
+        run: make image push clean ARCH=$ARCH
 
 #      - name: Clean
 #        run: make clean ARCH=$ARCH REGISTRY=$REGISTRY
