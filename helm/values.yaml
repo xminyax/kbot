@@ -7,6 +7,7 @@ image:
   repository: minyax
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.0.1-9f760e4"
+  os: linux
   arch: amd64
 secret:
   name: "kbot"
