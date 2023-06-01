@@ -1,5 +1,5 @@
 APP := $(shell basename $(shell git remote get-url origin))
-REGISTRYDOC := minyax
+REGISTRY := minyax
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
 OS=linux
 #linux darwin windows
