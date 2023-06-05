@@ -1,0 +1,6 @@
+GOOGLE_PROJECT = "kbot-k8s"
+GOOGLE_REGION = "us-central1-a"
+GKE_MACHINE_TYPE = "e2-small"
+GKE_NUM_NODES = 1
+GKE_CLUSTER_NAME = "main"
+GKE_POOL_NAME = "main"
