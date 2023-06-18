@@ -1,5 +1,6 @@
 variable "GOOGLE_PROJECT" {
   type        = string
+  default = "kbot-k8s"
   description = "GCP project name"
 }
 
